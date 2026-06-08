@@ -4,6 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import { firstValueFrom } from 'rxjs';
 
 import { serviceConfig } from '../../config/gateway.config';
+import { LoginDto } from '../dtos/login.dto';
+import { RegisterDto } from '../dtos/register.dto';
 
 export interface UserSession {
   valid: boolean;
@@ -17,6 +19,17 @@ export interface UserSession {
   } | null;
 }
 
+export interface AuthResponse {
+  access_token: string;
+  user: {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+  };
+}
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,7 +37,7 @@ export class AuthService {
     private readonly httpService: HttpService,
   ) {}
 
-  validateJwtToken(token: string): Promise<any> {
+  validateJwtToken(token: string): Promise<AuthResponse> {
     try {
       return this.jwtService.verify(token);
     } catch {
@@ -47,7 +60,7 @@ export class AuthService {
     }
   }
 
-  async login(loginDto: { email: string; password: string }) {
+  async login(loginDto: LoginDto): Promise<AuthResponse> {
     try {
       const { data } = await firstValueFrom(
         this.httpService.post(`${serviceConfig.users.url}/login`, loginDto, {
@@ -61,7 +74,7 @@ export class AuthService {
     }
   }
 
-  async register(registerDto: any) {
+  async register(registerDto: RegisterDto): Promise<AuthResponse> {
     try {
       const { data } = await firstValueFrom(
         this.httpService.post(

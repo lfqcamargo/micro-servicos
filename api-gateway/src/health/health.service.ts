@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { HealthStatus } from 'src/common/health/health-check.interface';
-import { HealthCheckService } from 'src/common/health/health-check.service';
+
+import { HealthStatus } from '../common/health/health-check.interface';
+import { HealthCheckService } from '../common/health/health-check.service';
 
 @Injectable()
 export class HealthService {

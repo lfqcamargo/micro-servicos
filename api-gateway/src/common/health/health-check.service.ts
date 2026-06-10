@@ -1,8 +1,8 @@
 import type { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { firstValueFrom, timeout } from 'rxjs';
-import { serviceConfig } from 'src/config/gateway.config';
 
+import { serviceConfig } from '../..//config/gateway.config';
 import type { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
 import { HealthStatus, type ServiceHealth } from './health-check.interface';
 

@@ -1,12 +1,12 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
-import { RetryService } from 'src/common/retry/retry.service';
-import { TimeoutService } from 'src/common/timeout/timeout.service';
 
 import { CacheFallbackService } from '../..//common/fallback/cache.fallback';
 import { DefaultFallbackService } from '../..//common/fallback/default.fallback';
 import { CircuitBreakerService } from '../../common/circuit-breaker/circuit-breaker.service';
+import { RetryService } from '../../common/retry/retry.service';
+import { TimeoutService } from '../../common/timeout/timeout.service';
 import { serviceConfig } from '../../config/gateway.config';
 
 interface UserInfo {

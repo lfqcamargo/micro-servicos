@@ -1,10 +1,10 @@
-import type { HttpService } from '@nestjs/axios';
+import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { firstValueFrom, timeout } from 'rxjs';
 
 import { serviceConfig } from '../..//config/gateway.config';
-import type { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
-import { HealthStatus, type ServiceHealth } from './health-check.interface';
+import { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
+import { HealthStatus, ServiceHealth } from './health-check.interface';
 
 @Injectable()
 export class HealthCheckService {
